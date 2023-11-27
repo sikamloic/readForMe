@@ -10,6 +10,22 @@ export class AuthService {
   SERVER_URL = environment.SERVER_URL + '/auth'
   constructor(private httpClient: HttpClient) { }
 
+  register(
+    id: string,
+    pseudo: string,
+    telephone: number
+    ){
+    const API_URL = this.SERVER_URL + '/register';
+    return this.httpClient.post(
+      API_URL,
+      {
+        ayobaId: id,
+        pseudo: pseudo,
+        telephone: telephone,
+      }
+    )
+  }
+
   login(email: string, password: string){
     const API_URL = this.SERVER_URL + '/login';
     return this.httpClient.post(

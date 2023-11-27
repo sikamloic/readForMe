@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -11,10 +12,16 @@ export const routes: Routes = [
     },
     {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'connexion',
+        data:{
+            id: null,
+            pseudo: null,
+            telephone: null,
+        },
         component: ConnexionComponent
     },
     {

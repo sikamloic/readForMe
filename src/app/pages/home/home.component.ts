@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TextToSpeechService } from '../../shared/services/text-to-speech.service';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   text: string
   constructor(private textToSpeechService: TextToSpeechService){}
@@ -29,6 +29,12 @@ export class HomeComponent {
 
   stop(){
     this.textToSpeechService.stop()
+  }
+
+  ngOnInit(): void {
+    // const voices = window.speechSynthesis.getVoices();
+    // const languages = voices.map(voice => voice.lang);
+    // console.log(languages)
   }
 
 }

@@ -6,43 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class TextToSpeechService {
 
-  // utterance = new SpeechSynthesisUtterance()
-  // constructor() { }
-
-  // readDocument(text: string){
-  //   let started = false
-  //   let ended = false
-  //   this.utterance.text = text
-  //   this.utterance.onstart = () =>{
-  //     console.log('Speech started');
-  //     started = true
-  //   }
-  //   this.utterance.onend = () =>{
-  //     this.stop()
-  //     ended = true
-  //     console.log('Speech ended');
-  //   }
-  //   this.utterance.onerror = (event) => console.error('Speech error:', event.error);
-  //   this.utterance.onresume
-  //   window.speechSynthesis.speak(this.utterance)
-  //   return {
-  //     started,
-  //     ended
-  //   }
-  // }
-
-  // pause(){
-  //   window.speechSynthesis.pause()
-  // }
-
-  // play(){
-  //   window.speechSynthesis.resume()
-  // }
-
-  // stop(){
-  //   window.speechSynthesis.cancel()
-  // }
-
   private synth: SpeechSynthesis;
   private isPaused: boolean = false;
 

@@ -3,6 +3,7 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { HistoryComponent } from './pages/history/history.component';
 
 export const routes: Routes = [
     {
@@ -27,5 +28,9 @@ export const routes: Routes = [
     {
         path: 'inscription',
         component: InscriptionComponent
+    },
+    {
+        path: 'history',
+        component: HistoryComponent
     }
 ];

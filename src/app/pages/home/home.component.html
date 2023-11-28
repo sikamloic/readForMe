@@ -17,9 +17,9 @@
       </div>
 </div> -->
 
-<div class="">
+<div class="bg-slate-800 h-full flex px-2.5">
   <div
-    class="max-w-md mx-auto relative overflow-hidden z-10 bg-white p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12"
+    class="w-full mx-auto relative overflow-hidden z-10 bg-white p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12"
   >
     <h2 class="text-2xl text-sky-900 font-bold mb-6">Ecouter votre texte</h2>
 
@@ -36,7 +36,7 @@
         /> -->
         <select class="mt-1 p-2 w-full border rounded-md" name="" id="">
           <option value="fr-FR">Français</option>
-          <option value="en-EN">Anglais</option>
+          <option value="en-US">Anglais</option>
         </select>
       </div>
 
@@ -50,6 +50,7 @@
           cols="5"
           name="bio"
           id="bio"
+          [(ngModel)]="text"
         ></textarea>
       </div>
 
@@ -60,59 +61,22 @@
         >
           Update Profile
         </button> -->
-        <button
-          class="overflow-hidden w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
+        <button class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
+        border-blue-600
+          border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
+          active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+          (click)="toggleSpeech()"
         >
-          Jouer
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"
-          ></span>
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-purple-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left"
-          ></span>
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-purple-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-left"
-          ></span>
-          <span
-            class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute -top-1 left-6 z-10"
-            ><img class="w-14" src="assets/Play.svg" alt=""></span
-          >
+          <!-- <img class="w-8 text-white" src="assets/play.svg" alt=""> -->
+          <img class="w-8 text-white" [src]="isSpeaking ? 'assets/pause.svg':'assets/play.svg'" alt="">
         </button>
-        <button
-          class="overflow-hidden w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
+        <button class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
+        border-blue-600
+          border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
+          active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+          (click)="cancelSpeech()"
         >
-          Arrêter
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"
-          ></span>
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-purple-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left"
-          ></span>
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-purple-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-left"
-          ></span>
-          <span
-            class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute -top-1 left-6 z-10"
-            ><img class="w-14" src="assets/Play.svg" alt=""></span
-          >
-        </button>
-        <button
-          class="overflow-hidden w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
-        >
-          Publier
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"
-          ></span>
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-purple-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left"
-          ></span>
-          <span
-            class="absolute w-36 h-32 -top-8 -left-2 bg-purple-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-left"
-          ></span>
-          <span
-            class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute -top-1 left-6 z-10"
-            ><img class="w-14" src="assets/Play.svg" alt=""></span
-          >
+          <img class="w-8 text-white" src="assets/stop.svg" alt="">
         </button>
       </div>
     </form>

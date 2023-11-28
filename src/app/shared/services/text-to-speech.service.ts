@@ -6,35 +6,101 @@ import { Injectable } from '@angular/core';
 })
 export class TextToSpeechService {
 
-  constructor() { }
+  // utterance = new SpeechSynthesisUtterance()
+  // constructor() { }
 
+  // readDocument(text: string){
+  //   let started = false
+  //   let ended = false
+  //   this.utterance.text = text
+  //   this.utterance.onstart = () =>{
+  //     console.log('Speech started');
+  //     started = true
+  //   }
+  //   this.utterance.onend = () =>{
+  //     this.stop()
+  //     ended = true
+  //     console.log('Speech ended');
+  //   }
+  //   this.utterance.onerror = (event) => console.error('Speech error:', event.error);
+  //   this.utterance.onresume
+  //   window.speechSynthesis.speak(this.utterance)
+  //   return {
+  //     started,
+  //     ended
+  //   }
+  // }
 
-  isMobileDevice() {
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  // pause(){
+  //   window.speechSynthesis.pause()
+  // }
+
+  // play(){
+  //   window.speechSynthesis.resume()
+  // }
+
+  // stop(){
+  //   window.speechSynthesis.cancel()
+  // }
+
+  private synth: SpeechSynthesis;
+  private isPaused: boolean = false;
+
+  constructor() {
+    this.synth = window.speechSynthesis;
   }
 
-  async readDocument(text: string, lang = 'en-EN', volume = 1.0, rate = 1.0, pitch = 1.0, voiceIndex = 0){
-    console.log(lang)
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.volume = volume
-    utterance.lang = lang
-    window.speechSynthesis.speak(utterance)
+  speak(text: string): void {
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.text = text;
+
+    utterance.onstart = () => {
+      console.log('La synthèse vocale a commencé');
+      this.isPaused = false;
+    };
+
+    utterance.onend = () => {
+      console.log('La synthèse vocale s\'est terminée avec succès');
+      this.isPaused = false;
+    };
+
+    utterance.onerror = (event) => {
+      console.error('Erreur de synthèse vocale :', event.error);
+      this.isPaused = false;
+    };
+
+    this.synth.speak(utterance);
   }
 
-  pause(){
-    window.speechSynthesis.pause()
+  pause(): void {
+    this.synth.pause();
+    this.isPaused = true;
   }
 
-  play(){
-    console.log('ecouter')
-    window.speechSynthesis.resume()
+  resume(): void {
+    if (this.isPaused) {
+      this.synth.resume();
+      this.isPaused = false
+    }
   }
 
-  stop(){
-    window.speechSynthesis.cancel()
+  cancel(): void {
+    this.synth.cancel();
+    this.isPaused = false;
   }
 
-  getVoice(text: string, lang: string, volume = 1.0, rate = 1.0, pitch = 1.0, voiceIndex = 0){
-    window.speechSynthesis.getVoices()
+  isSpeaking(): boolean {
+    if(this.synth.speaking){
+      console.log(this.isPaused)
+      if(!this.isPaused) return true
+      else return false
+    }
+    else{
+      return false
+    }
+  }
+
+  isPause(): boolean {
+    return this.isPaused;
   }
 }

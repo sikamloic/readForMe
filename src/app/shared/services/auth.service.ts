@@ -26,12 +26,12 @@ export class AuthService {
     )
   }
 
-  login(email: string, password: string){
+  login(telephone: number, password: string){
     const API_URL = this.SERVER_URL + '/login';
     return this.httpClient.post(
       API_URL,
       {
-        email: email,
+        telephone: telephone,
         password: password
       }
     )

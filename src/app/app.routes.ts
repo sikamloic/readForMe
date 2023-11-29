@@ -4,6 +4,7 @@ import { InscriptionComponent } from './pages/inscription/inscription.component'
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { HistoryComponent } from './pages/history/history.component';
+import { DetailComponent } from './pages/history/detail/detail.component';
 
 export const routes: Routes = [
     {
@@ -31,6 +32,15 @@ export const routes: Routes = [
     },
     {
         path: 'history',
-        component: HistoryComponent
+        children: [
+            {
+                path: '',
+                component: HistoryComponent,
+            },
+            {
+                path: 'detail/:id',
+                component: DetailComponent
+            }
+        ]
     }
 ];

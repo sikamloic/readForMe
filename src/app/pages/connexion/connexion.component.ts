@@ -41,7 +41,7 @@ export class ConnexionComponent implements OnInit {
     private router: ActivatedRoute
   ){
     this.form = this.formbuilder.group({
-      email: formbuilder.control('', [Validators.required, Validators.email]),
+      telephone: formbuilder.control('', [Validators.required, Validators.minLength(9)]),
       password : formbuilder.control('',[this.passwordValidator, Validators.required]),
       rememberMe: formbuilder.control('')
     })
@@ -51,19 +51,18 @@ export class ConnexionComponent implements OnInit {
     if(this.form.valid){
       this.isSubmitting  = true;
       this.authService.login(
-        this.form.value.email,
+        this.form.value.telephone,
         this.form.value.password
       )
       .subscribe({
         next: (res: any) =>{
           this.localStorage.set('user', res.user)
-          console.log(typeof res.tokens.access.expires)
           let date = new Date('res.tokens.access.expires')
           this.cookieService.set('accessToken', res.tokens.access.token, date)
-          if(this.form.value.rememberMe){
-            date = new Date('res.tokens.refresh.expires')
-            this.cookieService.set('refreshToken', res.tokens.refresh.token, date)
-          }
+          // if(this.form.value.rememberMe){
+          //   date = new Date('res.tokens.refresh.expires')
+          //   this.cookieService.set('refreshToken', res.tokens.refresh.token, date)
+          // }
           this.route.navigate(['/'])
         },
         error: (err: any) =>{
@@ -71,6 +70,9 @@ export class ConnexionComponent implements OnInit {
         }
       })
       this.isSubmitting  = false;
+    }
+    else{
+      console.log("Veuillez correctement remplir le formulaire")
     }
   }
 
@@ -80,23 +82,23 @@ export class ConnexionComponent implements OnInit {
       this.pseudo = params['pseudo'];
       this.telephone = params['telephone'];
     });
-    console.log(this.id, this.pseudo, this.telephone)
-    this.authService.register(this.id, this.pseudo, parseInt(this.telephone, 10))
-    .subscribe({
-      next: (res: any) =>{
-        this.localStorage.set('user', res.user)
-        console.log(typeof res.tokens.access.expires)
-        let date = new Date('res.tokens.access.expires')
-        this.cookieService.set('accessToken', res.tokens.access.token, date)
-        if(this.form.value.rememberMe){
-          date = new Date('res.tokens.refresh.expires')
-          this.cookieService.set('refreshToken', res.tokens.refresh.token, date)
+    if(this.id && this.pseudo && this.telephone){
+      this.authService.register(this.id, this.pseudo, parseInt(this.telephone, 10))
+      .subscribe({
+        next: (res: any) =>{
+          this.localStorage.set('user', res.user)
+          let date = new Date('res.tokens.access.expires')
+          this.cookieService.set('accessToken', res.tokens.access.token, date)
+          // if(this.form.value.rememberMe){
+          //   date = new Date('res.tokens.refresh.expires')
+          //   this.cookieService.set('refreshToken', res.tokens.refresh.token, date)
+          // }
+          this.route.navigate(['/'])
+        },
+        error: (err: any) =>{
+          this.message = err.error.message
         }
-        this.route.navigate(['/'])
-      },
-      error: (err: any) =>{
-        this.message = err.error.message
-      }
-    })
+      })
+    }
   }
 }

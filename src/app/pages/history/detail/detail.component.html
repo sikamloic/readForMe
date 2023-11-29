@@ -1,0 +1,72 @@
+<div class="bg-slate-300 h-full">
+  <div class="flex justify-around items-center w-full py-5">
+      <button class="w-8" (click)="back()">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+          </svg>
+      </button>
+      <div class="text-2xl font-serif">Detail</div>
+      <button class=""></button>
+  </div>
+  <div
+    class="w-full mx-auto relative overflow-hidden z-10 bg-white p-8"
+  >
+    <form method="" class="space-y-2">
+      <div class="">
+        <label for="" class="block text-sm font-medium text-gray-600">Titre</label>
+        <input 
+          type="text" name="" id="" class="mt-1 p-2 w-full border-2 rounded-md"
+          name="first"
+          [(ngModel)]="history.titre"
+        >
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-600" for="email"
+          >Choisir votre langue</label
+        >
+        <select class="mt-1 p-2 w-full border rounded-md" name="" id=""
+          [(ngModel)]="lang"
+          [ngModelOptions]="{standalone: true}"
+        >
+          <option value="fr-FR">Français</option>
+          <option value="en-US">Anglais</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block font-bold text-lg text-gray-600" for="bio"
+          >Entrer un text</label
+        >
+        <textarea
+          class="mt-1 p-2 w-full border-2 rounded-md"
+          rows="4"
+          cols="5"
+          name="bio"
+          id="bio"
+          [(ngModel)]="history.text"
+          [ngModelOptions]="{standalone: true}"
+        ></textarea>
+      </div>
+      <div class="flex justify-center space-x-5">
+        <button class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
+        border-blue-600
+          border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
+          active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+          (click)="toggleSpeech()"
+        > 
+          <img class="w-8 text-white" [src]="isSpeaking ? 'assets/pause.svg':'assets/play.svg'" alt="">
+        </button>
+        <button class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
+        border-blue-600
+          border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
+          active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+          (click)="cancelSpeech()"
+        >
+          <img class="w-8 text-white" src="assets/stop.svg" alt="">
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="">
+
+  </div>
+</div>

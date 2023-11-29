@@ -13,9 +13,10 @@ export class TextToSpeechService {
     this.synth = window.speechSynthesis;
   }
 
-  speak(text: string): void {
+  speak(text: string, lang: string): void {
     const utterance = new SpeechSynthesisUtterance();
     utterance.text = text;
+    utterance.lang = lang
 
     utterance.onstart = () => {
       console.log('La synthèse vocale a commencé');
@@ -23,8 +24,11 @@ export class TextToSpeechService {
     };
 
     utterance.onend = () => {
-      console.log('La synthèse vocale s\'est terminée avec succès');
-      this.isPaused = false;
+      setTimeout(() => {
+        this.synth.cancel();
+        console.log('La synthèse vocale s\'est terminée avec succès');
+        this.isPaused = false;
+      }, 0);
     };
 
     utterance.onerror = (event) => {

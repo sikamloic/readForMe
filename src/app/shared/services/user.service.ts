@@ -15,20 +15,19 @@ export class UserService {
     ) { }
 
   register(
-    nom: string,
-    prenom: string,
-    email: string, 
+    id: string,
+    pseudo: string,
+    telephone: number, 
     password: string
     ){
     const API_URL = this.SERVER_URL + '/register';
     return this.httpClient.post(
       API_URL,
       {
-        nom: nom,
-        prenom: prenom,
-        email: email,
-        password: password,
-        role: 'user'
+        ayobaId: id,
+        pseudo: pseudo,
+        telephone: telephone,
+        password: password
       }
     )
   }

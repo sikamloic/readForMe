@@ -16,7 +16,7 @@ export class HistoryService {
   
   add(
     text: string,
-    shared?: boolean
+    titre: string
   ){
     const API_URL = this.SERVER_URL + '/add' ;
     const token = this.cookieService.get('accessToken')
@@ -25,7 +25,7 @@ export class HistoryService {
       API_URL,
       {
         text: text,
-        public: shared
+        titre: titre
       },
       {headers}
     )
@@ -50,6 +50,16 @@ export class HistoryService {
     const token = this.cookieService.get('accessToken')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
     return this.httpClient.delete(
+      API_URL,
+      {headers}
+    )
+  }
+
+  getHistoryByid(id: string){
+    const API_URL = this.SERVER_URL + '/' + id
+    const token = this.cookieService.get('accessToken')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    return this.httpClient.get(
       API_URL,
       {headers}
     )

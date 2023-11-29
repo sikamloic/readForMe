@@ -1,15 +1,6 @@
-<app-header [history]="true"></app-header>
-<!-- <div class="flex bg-white w-[80%] px-1.25 py-1.25 shadow-box-up rounded-2xl dark:bg-box-dark dark:shadow-box-dark-out">
-    <div class="dark:shadow-buttons-box-dark rounded-2xl w-full px-1.5 py-1.5 md:px-3 md:py-3">
-      <a class="text-light-blue-light hover:text-black dark:text-gray-400 border-2 inline-flex items-center mr-4 last-of-type:mr-0 p-2.5 border-transparent bg-light-secondary shadow-button-flat-nopressed hover:border-2 hover:shadow-button-flat-pressed focus:opacity-100 focus:outline-none active:border-2 active:shadow-button-flat-pressed font-medium rounded-full text-sm text-center dark:bg-button-curved-default-dark dark:shadow-button-curved-default-dark dark:hover:bg-button-curved-pressed-dark dark:hover:shadow-button-curved-pressed-dark dark:active:bg-button-curved-pressed-dark dark:active:shadow-button-curved-pressed-dark dark:focus:bg-button-curved-pressed-dark dark:focus:shadow-button-curved-pressed-dark dark:border-0" title="Go to the home page">
-        Private
-      </a>
-      <a class="text-light-blue-light hover:text-black dark:text-gray-400 border-2 inline-flex items-center mr-4 last-of-type:mr-0 p-2.5 border-transparent bg-light-secondary shadow-button-flat-nopressed hover:border-2 hover:shadow-button-flat-pressed focus:opacity-100 focus:outline-none active:border-2 active:shadow-button-flat-pressed font-medium rounded-full text-sm text-center dark:bg-button-curved-default-dark dark:shadow-button-curved-default-dark dark:hover:bg-button-curved-pressed-dark dark:hover:shadow-button-curved-pressed-dark dark:active:bg-button-curved-pressed-dark dark:active:shadow-button-curved-pressed-dark dark:focus:bg-button-curved-pressed-dark dark:focus:shadow-button-curved-pressed-dark dark:border-0" title="Go to post list page">
-        Publique
-      </a>
-    </div>
-</div> -->
-<div class="flex items-center justify-center p-5">
+<div class="bg-slate-300 h-screen">
+  <app-header [history]="true"></app-header>
+  <div class="flex items-center justify-center p-5">
     <div class="rounded-lg bg-gray-200 p-5">
       <div class="flex">
         <div class="flex w-10 items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-gray-200 bg-white p-5">
@@ -21,34 +12,34 @@
         <input type="button" value="Search" class="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors">
       </div>
     </div>
-</div>
-<div class="p-4 flex flex-col space-y-5 bg-slate-300">
-    <div *ngFor="let item of result" class="flex items-center p-3 w-[98%] h-28 bg-white rounded-md shadow-lg">
-        <section class="flex justify-center items-center w-14 h-14 rounded-full shadow-md bg-gradient-to-r from-[#F9C97C] to-[#A2E9C1] hover:from-[#C9A9E9] hover:to-[#7EE7FC] hover:cursor-pointer hover:scale-110 duration-300">
-          <svg viewBox="0 0 15 15" class="w-7 fill-gray-700">
-            <path d="M7.5 0.875C5.49797 0.875 3.875 2.49797 3.875 4.5C3.875 6.15288 4.98124 7.54738 6.49373 7.98351C5.2997 8.12901 4.27557 8.55134 3.50407 9.31167C2.52216 10.2794 2.02502 11.72 2.02502 13.5999C2.02502 13.8623 2.23769 14.0749 2.50002 14.0749C2.76236 14.0749 2.97502 13.8623 2.97502 13.5999C2.97502 11.8799 3.42786 10.7206 4.17091 9.9883C4.91536 9.25463 6.02674 8.87499 7.49995 8.87499C8.97317 8.87499 10.0846 9.25463 10.8291 9.98831C11.5721 10.7206 12.025 11.8799 12.025 13.5999C12.025 13.8623 12.2376 14.0749 12.5 14.0749C12.7623 14.075 12.975 13.8623 12.975 13.6C12.975 11.72 12.4778 10.2794 11.4959 9.31166C10.7244 8.55135 9.70025 8.12903 8.50625 7.98352C10.0187 7.5474 11.125 6.15289 11.125 4.5C11.125 2.49797 9.50203 0.875 7.5 0.875ZM4.825 4.5C4.825 3.02264 6.02264 1.825 7.5 1.825C8.97736 1.825 10.175 3.02264 10.175 4.5C10.175 5.97736 8.97736 7.175 7.5 7.175C6.02264 7.175 4.825 5.97736 4.825 4.5Z">
-            </path>
-          </svg>
-        </section>
-        <section class="block border-l border-gray-300 m-3">
-            <div class="pl-3">
-                <h3 class="text-gray-600 font-semibold text-sm">Jesus Echeverria</h3>
-                <h3 class="bg-clip-text text-transparent w-56 bg-gray-600 overflow-ellipsis overflow-hidden whitespace-nowrap text-lg font-bold">
-                    {{item.text}}
-                </h3>
+  </div>
+  <div class="p-4 flex flex-col space-y-5">
+    <div *ngFor="let item of result" class="flex items-center p-3 w-[98%] h-28 bg-white rounded-md shadow-lg" [routerLink]='["detail/" + item.id]'>
+      <section class="flex justify-center items-center w-14 h-14 rounded-full shadow-md bg-gradient-to-r from-[#F9C97C] to-[#A2E9C1] hover:from-[#C9A9E9] hover:to-[#7EE7FC] hover:cursor-pointer hover:scale-110 duration-300">
+        <svg viewBox="0 0 15 15" class="w-7 fill-gray-700">
+          <path d="M7.5 0.875C5.49797 0.875 3.875 2.49797 3.875 4.5C3.875 6.15288 4.98124 7.54738 6.49373 7.98351C5.2997 8.12901 4.27557 8.55134 3.50407 9.31167C2.52216 10.2794 2.02502 11.72 2.02502 13.5999C2.02502 13.8623 2.23769 14.0749 2.50002 14.0749C2.76236 14.0749 2.97502 13.8623 2.97502 13.5999C2.97502 11.8799 3.42786 10.7206 4.17091 9.9883C4.91536 9.25463 6.02674 8.87499 7.49995 8.87499C8.97317 8.87499 10.0846 9.25463 10.8291 9.98831C11.5721 10.7206 12.025 11.8799 12.025 13.5999C12.025 13.8623 12.2376 14.0749 12.5 14.0749C12.7623 14.075 12.975 13.8623 12.975 13.6C12.975 11.72 12.4778 10.2794 11.4959 9.31166C10.7244 8.55135 9.70025 8.12903 8.50625 7.98352C10.0187 7.5474 11.125 6.15289 11.125 4.5C11.125 2.49797 9.50203 0.875 7.5 0.875ZM4.825 4.5C4.825 3.02264 6.02264 1.825 7.5 1.825C8.97736 1.825 10.175 3.02264 10.175 4.5C10.175 5.97736 8.97736 7.175 7.5 7.175C6.02264 7.175 4.825 5.97736 4.825 4.5Z">
+          </path>
+        </svg>
+      </section>
+      <section class="block border-l border-gray-300 m-3">
+        <div class="pl-3">
+            <h3 class="text-gray-600 font-semibold text-sm">{{item.titre}}</h3>
+            <h3 class="bg-clip-text text-transparent w-56 bg-gray-600 overflow-ellipsis overflow-hidden whitespace-nowrap text-lg font-bold">
+              {{item.text}}
+            </h3>
+        </div>
+          <div class="flex justify-between w-full items-end">
+            <div class="flex gap-3 pt-2 pl-3">
+              <div class="" (click)="delete(item.id)">
+                <img class="w-6 hover:scale-125 duration-200 hover:cursor-pointer fill-white stroke-2" src="assets/trash-outline.svg" alt="">
+              </div>
+              <div class="" (click)="visibility(item.id, !item.public)">
+                <img class="w-6 hover:scale-125 duration-200 hover:cursor-pointer fill-white stroke-2" [src]="item.public ? 'assets/eye-outline.svg':'assets/eye-off-outline.svg'" alt="">
+              </div>
             </div>
-            <div class="flex justify-between w-full items-end">
-                <div class="flex gap-3 pt-2 pl-3">
-                    <div class="" (click)="delete(item.id)">
-                        <img class="w-6 hover:scale-125 duration-200 hover:cursor-pointer fill-white stroke-2" src="assets/trash-outline.svg" alt="">
-                    </div>
-                    <div class="" (click)="visibility(item.id, !item.public)">
-                        <img class="w-6 hover:scale-125 duration-200 hover:cursor-pointer fill-white stroke-2" [src]="item.public ? 'assets/eye-outline.svg':'assets/eye-off-outline.svg'" alt="">
-                    </div>
-                </div>
-                <div class="text-gray-400 text-sm">{{getDate(item.date)}}</div>
-            </div>
-        </section>
+            <div class="text-gray-400 text-sm">{{getDate(item.date)}}</div>
+          </div>
+      </section>
     </div>
+  </div>
 </div>
-

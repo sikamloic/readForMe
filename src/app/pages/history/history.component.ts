@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { LocalstorageService } from '../../shared/services/localstorage.service';
 import { HistoryService } from '../../shared/services/history.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, RouterLink],
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss'
 })

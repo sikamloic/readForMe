@@ -97,6 +97,7 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "node_modules/responsivevoice/responsivevoice.js"
             ]
           }
         }

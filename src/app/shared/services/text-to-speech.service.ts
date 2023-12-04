@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+declare var responsiveVoice: any;
 
 
 @Injectable({
@@ -9,8 +11,27 @@ export class TextToSpeechService {
   private synth: SpeechSynthesis;
   private isPaused: boolean = false;
 
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
     this.synth = window.speechSynthesis;
+  }
+
+  speak1(text: string) {
+    const url = 'https://cloudlabs-text-to-speech.p.rapidapi.com/synthesize';
+    const headers = new HttpHeaders({
+      'content-type': 'application/x-www-form-urlencoded',
+      'X-RapidAPI-Key': 'dcfc7b65d9msh02bd6153e2569b4p16016ejsn8d0a0c839067',
+      'X-RapidAPI-Host': 'cloudlabs-text-to-speech.p.rapidapi.com'
+    });
+    const body = new URLSearchParams();
+    body.set('voice_code', 'en-US-1');
+    body.set('text', text);
+    body.set('speed', '1.00');
+    body.set('pitch', '1.00');
+    body.set('output_type', 'audio_url');
+
+    return this.http.post(url, body.toString(), { headers })
   }
 
   speak(text: string, lang: string): void {

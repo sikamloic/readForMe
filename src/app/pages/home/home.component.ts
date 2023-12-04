@@ -4,6 +4,7 @@ import { TextToSpeechService } from '../../shared/services/text-to-speech.servic
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HistoryService } from '../../shared/services/history.service';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -23,10 +24,12 @@ export class HomeComponent implements OnInit {
   titre: string
   form: FormGroup
   voices: any
+  audioUrl: string = ''
   constructor(
     private textToSpeechService: TextToSpeechService,
     private historyService: HistoryService,
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    private http: HttpClient
     ){
       this.form = this.formbuilder.group({
         titre: formbuilder.control('', Validators.required)
@@ -66,6 +69,15 @@ export class HomeComponent implements OnInit {
     else{
       this.message = "Entrer le texte !!!"
     }
+  }
+
+  speak() {
+    this.textToSpeechService.speak1(this.text)
+    .subscribe({
+      next: (res: any) =>{
+        this.audioUrl = res['url']
+      }
+    })
   }
 
   cancelSpeech(): void {

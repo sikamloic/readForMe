@@ -31,6 +31,7 @@ export class DetailComponent implements OnInit {
   titre: string
   user: any
   lang: string
+  audioUrl: string
   constructor(
     private route: ActivatedRoute,
     private historyService: HistoryService,

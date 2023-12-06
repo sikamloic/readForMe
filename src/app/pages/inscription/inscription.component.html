@@ -1,15 +1,8 @@
-<div class="flex justify-center items-center container">
+<div class="h-screen flex items-center justify-center bg-slate-300">
     <div class="form-container">
         <p class="title">Bienvenue</p>
         <form class="form" [formGroup]="form" (ngSubmit)="register()">
           <div class="text-xs text-red-500 font-semibold">{{message}}</div>
-          <input type="text" class="input" placeholder="AyobaId" formControlName="id">
-          <div class="text-xs text-red-500 font-semibold" *ngIf="form.get('id')?.hasError('required') && form.get('id')?.touched">
-            Ce champ est obligatoire.
-          </div>
-          <div class="text-xs text-red-500 font-semibold" *ngIf="form.get('id')?.hasError('minlength') && form.get('id')?.touched">
-            L'identifiant doit avoir une longueur de 24 caractères.
-          </div>
           <input type="text" class="input" placeholder="Pseudo" formControlName="pseudo">
           <div class="text-xs text-red-500 font-semibold" *ngIf="form.get('pseudo')?.hasError('required') && form.get('pseudo')?.touched">
             Ce champ est obligatoire.
@@ -28,10 +21,10 @@
           <div class="text-xs text-red-500 font-semibold" *ngIf="form.get('password')?.hasError('invalidPassword') && form.get('password')?.touched">
             Le mot de passe doit avoir au moins une lettre et une longueur minimale de 8 caractères.
           </div>
-          <button type="submit" [disabled]="!form.valid" class="form-btn" [ngClass]="form.valid ? '':'opacity-30'">Log in</button>
+          <button type="submit" [disabled]="!form.valid" class="form-btn" [ngClass]="form.valid ? '':'opacity-30'">S'inscrire</button>
         </form>
         <p class="sign-up-label">
-          Don't have an account?<span class="sign-up-link" routerLink="/connexion">Log in</span>
+          Vous avez déjà un compte?<span class="sign-up-link" routerLink="/connexion">se connecter</span>
         </p>
         <div class="buttons-container">
           <div class="apple-login-button">

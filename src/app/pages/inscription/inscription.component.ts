@@ -40,7 +40,6 @@ export class InscriptionComponent {
     private authService: AuthService
   ){
     this.form = this.formbuilder.group({
-      id: formbuilder.control('', [Validators.required, Validators.minLength(24)]),
       password : formbuilder.control('',[this.passwordValidator, Validators.required]),
       pseudo: formbuilder.control('', [Validators.required]),
       telephone: formbuilder.control('', [Validators.required, Validators.minLength(9)]),
@@ -50,8 +49,9 @@ export class InscriptionComponent {
   register(){
     if(this.form.valid){
       this.isSubmitting  = true
+      let id = this.generateCode(4)
       this.userService.register(
-        this.form.value.id,
+        id,
         this.form.value.pseudo,
         this.form.value.telephone,
         this.form.value.password
@@ -97,4 +97,14 @@ export class InscriptionComponent {
       console.log("Veuillez correctement remplir le formulaire")
     }
   }
+
+  generateCode(len: number) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < len; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 }

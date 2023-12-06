@@ -140,6 +140,9 @@
           </li>
         </ul>
       </div>
+      <audio controls class="play text-red-600 w-full h-10 mt-5" >
+        <source [src]="audioUrl" />
+      </audio>
       <button [ngClass]="langFrom && langTo ? '':'opacity-30'"  class="bg-[#5372F0]" (click)="translate()">Translate Text</button>
     </div>
   </div>

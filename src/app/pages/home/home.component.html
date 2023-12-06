@@ -97,6 +97,7 @@
   <app-header [home]="true" class=""></app-header>
   <div class="flex justify-center mt-10">
     <div class="container">
+      <div class="text-red-500 text-sm" *ngIf="message">{{message}}</div>
       <input type="text" class="" placeholder="Titre"
         [(ngModel)]="titre"
         [ngModelOptions]="{standalone: true}"
@@ -150,8 +151,8 @@
           </li>
         </ul>
       </div>
-      <button class="bg-[#5372F0]" (click)="translate()">Translate Text</button>
-      <button type="submit" class="bg-green-500" (click)="save()">Enregistrer</button>
+      <button [ngClass]="langFrom && langTo ? '':'opacity-30'" class="bg-[#5372F0]" (click)="translate()">Translate Text</button>
+      <button type="submit" [ngClass]="titre ? '':'opacity-30'" class="bg-green-500" (click)="save()">Enregistrer</button>
     </div>
   </div>
 </div>

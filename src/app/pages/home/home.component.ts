@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit {
       })
     }
     else{
-      this.message = "Entrer le texte !!!"
+      this.message = "Entrer le texte ou le titre !!!"
     }
   }
 
@@ -191,12 +191,15 @@ export class HomeComponent implements OnInit {
   }
 
   translate(){
-    this.translateSerive.translate(this.text, this.langFrom, this.langTo)
-    .subscribe({
-      next: ((res: any) =>{
-        this.traduction = res.responseData.translatedText
+    if(!this.text || !this.langFrom || !this.langTo) this.message = "Veuillez préciser les langues ou le text !!!"
+    else{
+      this.translateSerive.translate(this.text, this.langFrom, this.langTo)
+      .subscribe({
+        next: ((res: any) =>{
+          this.traduction = res.responseData.translatedText
+        })
       })
-    })
+    }
   }
 
   exchange(){

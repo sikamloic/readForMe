@@ -136,6 +136,7 @@ export class DetailComponent implements OnInit {
   langFrom: string
   langTo: string
   countriesArray: any[]
+  message: string
   constructor(
     private route: ActivatedRoute,
     private historyService: HistoryService,
@@ -172,12 +173,15 @@ export class DetailComponent implements OnInit {
   }
 
   translate(){
-    this.translateSerive.translate(this.history.text, this.langFrom, this.langTo)
-    .subscribe({
-      next: ((res: any) =>{
-        this.traduction = res.responseData.translatedText
+    if(!this.text || !this.langFrom || !this.langTo) this.message = "Veuillez préciser les langues ou le text !!!"
+    else{
+      this.translateSerive.translate(this.text, this.langFrom, this.langTo)
+      .subscribe({
+        next: ((res: any) =>{
+          this.traduction = res.responseData.translatedText
+        })
       })
-    })
+    }
   }
 
   exchange(){

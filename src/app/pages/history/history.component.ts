@@ -17,6 +17,7 @@ export class HistoryComponent implements OnInit {
   user: any
   message: string
   result: any
+  isChecking: boolean
   constructor(
     private localStorage: LocalstorageService,
     private historyService: HistoryService
@@ -30,6 +31,19 @@ export class HistoryComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         this.result = res.results
+      },
+      error: (err: any) =>{
+        this.message = err.error.message
+      }
+    })
+  }
+
+  getPubllicHistory(){
+    this.historyService.getAllByUserId({'public': true}, {'sortBy':''})
+    .subscribe({
+      next: (res: any) =>{
+        this.result = res.results
+        console.log(this.result)
       },
       error: (err: any) =>{
         this.message = err.error.message
@@ -69,6 +83,12 @@ export class HistoryComponent implements OnInit {
   getMonth(i: number){
     let month = ["Jan", "Fev", "Mars", "Avril", "Mai", "Juin", "Juill", "Aout", "Sept", "Oct", "Nov", "Dec"]
     return month[i]
+  }
+
+  change(event: any){
+    console.log(event.target.checked)
+    if(!event.target.checked) this.getAllHistory()
+    else this.getPubllicHistory()
   }
 
   ngOnInit(): void {

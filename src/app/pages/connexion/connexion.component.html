@@ -20,7 +20,10 @@
           <p class="page-link">
             <span class="page-link-label">Mot de passe oublié?</span>
           </p>
-          <button type="submit" [disabled]="!form.valid" class="form-btn" [ngClass]="form.valid ? '':'opacity-30'">Se connecter</button>
+          <button type="submit" [disabled]="!form.valid" class="form-btn flex items-center justify-center space-x-3" [ngClass]="form.valid ? '':'opacity-30'">
+            <mat-spinner diameter="030" *ngIf="isSubmitting"></mat-spinner>
+            <span class="">Se connecter</span>
+          </button>
         </form>
         <p class="sign-up-label">
           Vous n'avez pas de compte?<span class="sign-up-link"  routerLink="/inscription">S'inscrire</span>

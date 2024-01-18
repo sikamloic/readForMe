@@ -21,7 +21,10 @@
           <div class="text-xs text-red-500 font-semibold" *ngIf="form.get('password')?.hasError('invalidPassword') && form.get('password')?.touched">
             Le mot de passe doit avoir au moins une lettre et une longueur minimale de 8 caractères.
           </div>
-          <button type="submit" [disabled]="!form.valid" class="form-btn" [ngClass]="form.valid ? '':'opacity-30'">S'inscrire</button>
+          <button type="submit" [disabled]="!form.valid" class="form-btn flex justify-center items-center space-x-3" [ngClass]="form.valid ? '':'opacity-30'">
+            <mat-spinner diameter="030" *ngIf="isSubmitting"></mat-spinner>
+            <span class="">S'inscrire</span>
+          </button>
         </form>
         <p class="sign-up-label">
           Vous avez déjà un compte?<span class="sign-up-link" routerLink="/connexion">se connecter</span>

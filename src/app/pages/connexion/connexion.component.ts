@@ -6,11 +6,12 @@ import { AuthService } from '../../shared/services/auth.service';
 import { LocalstorageService } from '../../shared/services/localstorage.service';
 import { CookieStorageService } from '../../shared/services/cookie.service';
 import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, HttpClientModule ],
+  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, HttpClientModule, MatProgressSpinnerModule ],
   templateUrl: './connexion.component.html',
   styleUrl: './connexion.component.scss'
 })
@@ -63,10 +64,12 @@ export class ConnexionComponent implements OnInit {
           //   date = new Date('res.tokens.refresh.expires')
           //   this.cookieService.set('refreshToken', res.tokens.refresh.token, date)
           // }
+          this.isSubmitting = false
           this.route.navigate(['/'])
         },
         error: (err: any) =>{
           this.message = err.error.message
+          this.isSubmitting = false
         }
       })
       this.isSubmitting  = false;

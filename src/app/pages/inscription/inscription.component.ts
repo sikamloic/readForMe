@@ -6,11 +6,12 @@ import { CookieStorageService } from '../../shared/services/cookie.service';
 import { LocalstorageService } from '../../shared/services/localstorage.service';
 import { UserService } from '../../shared/services/user.service';
 import { AuthService } from '../../shared/services/auth.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-inscription',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, MatProgressSpinnerModule],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.scss'
 })
@@ -59,10 +60,11 @@ export class InscriptionComponent {
       .subscribe({
         next: (res: any) =>{
           this.login()
+          this.isSubmitting = false
         },
         error: (err: any) =>{
           this.message = err.error.message
-          this.isSubmitting  = true
+          this.isSubmitting  = false
         }
       })
       this.isSubmitting  = false

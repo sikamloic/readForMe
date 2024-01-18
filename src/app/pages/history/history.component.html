@@ -37,7 +37,7 @@
         </svg>
       </section>
       <section class="block border-l border-gray-300 m-3">
-        <div class="pl-3">
+        <div class="pl-3" [routerLink]="['detail/' + item.id]">
             <h3 class="text-gray-600 font-semibold text-sm">{{item.titre}}</h3>
             <h3 class="bg-clip-text text-transparent w-56 bg-gray-600 overflow-ellipsis overflow-hidden whitespace-nowrap text-lg font-bold">
               {{item.text}}
@@ -55,17 +55,6 @@
             <div class="text-gray-400 text-sm">{{getDate(item.date)}}</div>
           </div>
       </section>
-    </div>
-    <div
-      *ngFor="let item of result"
-      class="cursor-pointer transition-all duration-500 hover:translate-y-2 max-w-[90%] h-20 max-h-36 bg-neutral-50 rounded-lg shadow-xl flex flex-row items-center justify-evenly gap-4 px-4"
-    >
-      <div [routerLink]="['detail/' + item.id]">
-        <span class="font-bold text-purple-300">{{item.titre}}</span>
-        <p class="line-clamp-3">
-          {{item.text}}
-        </p>
-      </div>
     </div>
   </div>
 </div>
